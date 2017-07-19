@@ -58,12 +58,12 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-d3.csv("cost-of-living.csv", function(error, cities) {
+d3.csv("bayer.csv", function(error, cities) {
   if (error) throw error;
 
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(cities[0]).filter(function(d) {
-    return d != "City" && (y[d] = d3.scale.linear()
+    return d != "Account" && (y[d] = d3.scale.linear()
         .domain(d3.extent(cities, function(p) { return +p[d]; }))
         .range([h, 0]));
   }));
