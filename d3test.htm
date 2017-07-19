@@ -57,7 +57,7 @@ var svg = d3.select("body").append("svg")
     .attr("height", h + m[0] + m[2])
   .append("g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
-
+/*
 d3.csv("bayer.csv", function(error, cities) {
   if (error) throw error;
 
@@ -108,7 +108,7 @@ d3.csv("bayer.csv", function(error, cities) {
       .attr("x", -8)
       .attr("width", 16);
 });
-
+*/
 // Returns the path for a given data point.
 function path(d) {
   return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
