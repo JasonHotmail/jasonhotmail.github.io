@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <title>Visualization</title>
+    <link rel="stylesheet" href="simple.css">
+</head>
+<style>
+body {text-align:center; margin:0px;}
+.node {
+  stroke: #fff;
+  fill: #ccc;
+  stroke-width: 1.5px;
+}
+.link {
+  stroke: #333;
+  stroke-opacity: .5;
+  stroke-width: 1.5px;
+}
+.label {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+</style>
+
+<body></body>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="visualization.js"></script>
+<script>
+
+var hashtag = get_hashtag_from_param();
+run_viz(hashtag);
+
+function run_viz(hashtag) {
+    document.title = 'Visualization of ' + hashtag;
+    var input_net = "data/"+hashtag+"_commnet.json",
+        input_seq = "data/"+hashtag+"_seq.json";
+    var speed = 150;
+    viz(input_net, input_seq, hashtag, speed);
+}
+
+function get_hashtag_from_param() {
+    var sURL = window.document.URL.toString();
+    var default_hashtag = "Tide";
+    if (sURL.indexOf("?") > 0) {
+       var arrParams = sURL.split("?");
+       var arrURLParams = arrParams[1].split("&");
+       
+       for (var i=0; i < arrURLParams.length; i++) {
+          var sParam =  arrURLParams[i].split("=");
+          param_name = sParam[0];
+          param_val = sParam[1];
+          if (param_name == "tag" && param_val != "")
+              return param_val
+       }
+        return default_hashtag;
+    }
+    return default_hashtag;
+}
+
+</script>
+
+<p id="footer" align="center">
+Social Network Referral Purchase Simulation<br>
+
+<table id="footer"><tr><td>
+M2C:
+<a href="viz.html?tag=Tide" class="fancy-button">CPG-Laundry Detergent</a>
+<a href="viz.html?tag=Tide" class="fancy-button">CPG-misc</a>
+
+<br>
+Traditional Influncer Marketing:
+<a href="viz.html?tag=Tide2" class="fancy-button">CPG-Laundry Detergent
+</a>
+
+</td></tr></table>
+</p>
+
+</html>
